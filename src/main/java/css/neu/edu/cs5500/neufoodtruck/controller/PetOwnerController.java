@@ -32,7 +32,7 @@ public class PetOwnerController {
         @ApiResponse(code = 403, message = "forbidden!!!"),
         @ApiResponse(code = 404, message = "not found!!!") })
     @RequestMapping(method = RequestMethod.GET, value = "/findByCategory/{category}")
-    public List<AnimalRecord> findAnimalById(@PathVariable @ApiParam(value = "eg: Cat") String category) {
+    public List<AnimalRecord> findAnimalById(@PathVariable @ApiParam(value = "eg: Cat", required = true) String category) {
         return petOwnerService.findAnimalByCategory(category);
     }
 
@@ -43,7 +43,7 @@ public class PetOwnerController {
         @ApiResponse(code = 403, message = "forbidden!!!"),
         @ApiResponse(code = 404, message = "not found!!!") })
     @RequestMapping(method = RequestMethod.GET, value = "/findByCategoryAndBreed/{category}/{breed}")
-    public List<AnimalRecord> findAnimalByCategoryAndBreed(@PathVariable @ApiParam(value = "eg: Cat") String category, @PathVariable @ApiParam(value = "breed1") String breed) {
+    public List<AnimalRecord> findAnimalByCategoryAndBreed(@PathVariable @ApiParam(value = "eg: Cat", required = true) String category, @PathVariable @ApiParam(value = "breed1") String breed) {
         return petOwnerService.findAnimalByCategoryAndBreed(category, breed);
     }
 
@@ -54,8 +54,8 @@ public class PetOwnerController {
         @ApiResponse(code = 403, message = "forbidden!!!"),
         @ApiResponse(code = 404, message = "not found!!!") })
     @RequestMapping(method = RequestMethod.GET, value = "/findByCategoryAndColor/{category}/{color}")
-    public List<AnimalRecord> findAnimalByCategoryAndColor(@PathVariable @ApiParam(value = "eg: Cat") String category,
-                                                           @PathVariable@ApiParam(value = "eg: black")  String color) {
+    public List<AnimalRecord> findAnimalByCategoryAndColor(@PathVariable @ApiParam(value = "eg: Cat", required = true) String category,
+                                                           @PathVariable@ApiParam(value = "eg: black", required = true)  String color) {
         return petOwnerService.findAnimalByCategoryAndColor(category, color);
     }
 
@@ -66,9 +66,9 @@ public class PetOwnerController {
         @ApiResponse(code = 403, message = "forbidden!!!"),
         @ApiResponse(code = 404, message = "not found!!!") })
     @RequestMapping(method = RequestMethod.GET, value = "/findByCategoryAndBreedAndColor/{category}/{breed}/{color}")
-    public List<AnimalRecord> findAnimalByCategoryAndBreedAndColor(@PathVariable @ApiParam(value = "eg: Cat") String category,
-                                                                   @PathVariable @ApiParam(value = "eg: breed1") String breed,
-                                                                   @PathVariable @ApiParam(value = "eg: black") String color) {
+    public List<AnimalRecord> findAnimalByCategoryAndBreedAndColor(@PathVariable @ApiParam(value = "eg: Cat", required = true) String category,
+                                                                   @PathVariable @ApiParam(value = "eg: breed1", required = true) String breed,
+                                                                   @PathVariable @ApiParam(value = "eg: black", required = true) String color) {
         return petOwnerService.findAnimalByCategoryAndBreedAndColor(category, breed, color);
     }
 
@@ -79,8 +79,8 @@ public class PetOwnerController {
         @ApiResponse(code = 403, message = "forbidden!!!"),
         @ApiResponse(code = 404, message = "not found!!!") })
     @RequestMapping(method = RequestMethod.POST, value = "/findByCategoryAfterLostTime/{category}")
-    public List<AnimalRecord> findAnimalByCategoryAfterLostTime(@PathVariable @ApiParam(value = "eg: Cat") String category,
-                                                                @RequestBody @ApiParam(value = "eg: \"1900-01-17T10:10:38.000+0000\"") Timestamp lostTime ) {
+    public List<AnimalRecord> findAnimalByCategoryAfterLostTime(@PathVariable @ApiParam(value = "eg: Cat", required = true) String category,
+                                                                @RequestBody @ApiParam(value = "eg: \"1900-01-17T10:10:38.000+0000\"", required = true) Timestamp lostTime ) {
         return petOwnerService.findAnimalByCategoryAfterLostTime(category, lostTime);
     }
 
@@ -91,9 +91,9 @@ public class PetOwnerController {
         @ApiResponse(code = 403, message = "forbidden!!!"),
         @ApiResponse(code = 404, message = "not found!!!") })
     @RequestMapping(method = RequestMethod.POST, value = "/findByCategoryAndBreedAfterLostTime/{category}/{breed}")
-    public List<AnimalRecord> findAnimalByCategoryAndBreedAfterLostTime(@PathVariable @ApiParam(value = "eg: Cat")String category,
-                                                                        @PathVariable @ApiParam(value = "eg: breed1")String breed,
-                                                                        @RequestBody @ApiParam(value = "eg: \"1900-01-17T10:10:38.000+0000\"") Timestamp lostTime) {
+    public List<AnimalRecord> findAnimalByCategoryAndBreedAfterLostTime(@PathVariable @ApiParam(value = "eg: Cat", required = true)String category,
+                                                                        @PathVariable @ApiParam(value = "eg: breed1", required = true)String breed,
+                                                                        @RequestBody @ApiParam(value = "eg: \"1900-01-17T10:10:38.000+0000\"", required = true) Timestamp lostTime) {
         return petOwnerService.findAnimalByCategoryAndBreedAfterLostTime(category, breed, lostTime);
     }
 
@@ -104,9 +104,9 @@ public class PetOwnerController {
         @ApiResponse(code = 403, message = "forbidden!!!"),
         @ApiResponse(code = 404, message = "not found!!!") })
     @RequestMapping(method = RequestMethod.POST, value = "/findByCategoryAndColorAfterLostTime/{category}/{color}")
-    public List<AnimalRecord> findAnimalByCategoryAndColorAfterLostTime(@PathVariable @ApiParam(value = "eg: Cat") String category,
-                                                                        @PathVariable @ApiParam(value = "eg: black")String color,
-                                                                        @RequestBody @ApiParam(value = "eg: \"1900-01-17T10:10:38.000+0000\"") Timestamp lostTime) {
+    public List<AnimalRecord> findAnimalByCategoryAndColorAfterLostTime(@PathVariable @ApiParam(value = "eg: Cat", required = true) String category,
+                                                                        @PathVariable @ApiParam(value = "eg: black", required = true)String color,
+                                                                        @RequestBody @ApiParam(value = "eg: \"1900-01-17T10:10:38.000+0000\"", required = true) Timestamp lostTime) {
         return petOwnerService.findAnimalByCategoryAndColorAfterLostTime(category, color, lostTime);
     }
 
@@ -117,10 +117,10 @@ public class PetOwnerController {
         @ApiResponse(code = 403, message = "forbidden!!!"),
         @ApiResponse(code = 404, message = "not found!!!") })
     @RequestMapping(method = RequestMethod.POST, value = "/findByCategoryAndBreedAndColorAndFoundTimeAfter/{category}/{breed}/{color}")
-    public List<AnimalRecord> findAnimalByCategoryAndBreedAndColorAfterLostTime(@PathVariable @ApiParam(value = "eg: Cat") String category,
-                                                                                @PathVariable @ApiParam(value = "eg: breed1") String breed,
-                                                                                @PathVariable @ApiParam(value = "eg: black") String color,
-                                                                                @RequestBody @ApiParam(value = "eg: \"1900-01-17T10:10:38.000+0000\"")Timestamp lostTime) {
+    public List<AnimalRecord> findAnimalByCategoryAndBreedAndColorAfterLostTime(@PathVariable @ApiParam(value = "eg: Cat", required = true) String category,
+                                                                                @PathVariable @ApiParam(value = "eg: breed1", required = true) String breed,
+                                                                                @PathVariable @ApiParam(value = "eg: black", required = true) String color,
+                                                                                @RequestBody @ApiParam(value = "eg: \"1900-01-17T10:10:38.000+0000\"", required = true)Timestamp lostTime) {
         return petOwnerService.findAnimalByCategoryAndBreedAndColorAfterLostTime(category, breed, color, lostTime);
     }
 
@@ -131,10 +131,10 @@ public class PetOwnerController {
         @ApiResponse(code = 403, message = "forbidden!!!"),
         @ApiResponse(code = 404, message = "not found!!!") })
     @RequestMapping(method = RequestMethod.GET, value = "/findByCertainLocation/{distance}/{latitude}/{longitude}/{unit}")
-    public List<AnimalRecord> findByCertainLocation(@PathVariable @ApiParam(value = "eg: 200000") double distance,
-                                                    @PathVariable @ApiParam(value = "eg: 22") double latitude,
-                                                    @PathVariable @ApiParam(value = "eg: 233") double longitude,
-                                                    @PathVariable  @ApiParam(value = "eg: N")String unit) {
+    public List<AnimalRecord> findByCertainLocation(@PathVariable @ApiParam(value = "eg: 200000", required = true) double distance,
+                                                    @PathVariable @ApiParam(value = "eg: 22", required = true) double latitude,
+                                                    @PathVariable @ApiParam(value = "eg: 233", required = true) double longitude,
+                                                    @PathVariable  @ApiParam(value = "eg: N", required = true)String unit) {
         return petOwnerService.findAnimalWithinCertainLocation(distance, latitude, longitude, unit);
     }
 }

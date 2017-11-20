@@ -63,7 +63,7 @@ public class ShelterEmployeeController {
         @ApiResponse(code = 403, message = "forbidden!!!"),
         @ApiResponse(code = 404, message = "not found!!!") })
     @RequestMapping(method = RequestMethod.GET, value = "/checkShelterCapacity/{shelterId}")
-    public int checkShelterCapacityById(@PathVariable @ApiParam(value = "eg: 31")int shelterId) {
+    public int checkShelterCapacityById(@PathVariable @ApiParam(value = "eg: 31", required = true)int shelterId) {
         return shelterEmployeeService.checkShelterCapacityById(shelterId);
     }
 
@@ -74,7 +74,7 @@ public class ShelterEmployeeController {
         @ApiResponse(code = 403, message = "forbidden!!!"),
         @ApiResponse(code = 404, message = "not found!!!") })
     @RequestMapping(method = RequestMethod.GET, value = "/checkShelterAvailability/{shelterId}")
-    public int checkShelterAvailabilityById(@PathVariable @ApiParam(value = "eg: 31")int shelterId) {
+    public int checkShelterAvailabilityById(@PathVariable @ApiParam(value = "eg: 31", required = true)int shelterId) {
         return shelterEmployeeService.checkShelterAvailabilityById(shelterId);
     }
 
@@ -85,7 +85,7 @@ public class ShelterEmployeeController {
         @ApiResponse(code = 403, message = "forbidden!!!"),
         @ApiResponse(code = 404, message = "not found!!!") })
     @RequestMapping(method = RequestMethod.GET, value = "/findAnimalByShelterId/{shelterId}")
-    public List<AnimalRecord> findAnimalByShelterId(@PathVariable @ApiParam(value = "eg: 31")int shelterId) {
+    public List<AnimalRecord> findAnimalByShelterId(@PathVariable @ApiParam(value = "eg: 31", required = true)int shelterId) {
         return shelterEmployeeService.findAnimalByShelterId(shelterId);
     }
 
@@ -96,7 +96,7 @@ public class ShelterEmployeeController {
         @ApiResponse(code = 403, message = "forbidden!!!"),
         @ApiResponse(code = 404, message = "not found!!!") })
     @RequestMapping(method = RequestMethod.GET, value = "/findShelterById/{shelterId}")
-    public Shelter findShelterById(@PathVariable @ApiParam(value = "eg: 31")int shelterId) {
+    public Shelter findShelterById(@PathVariable @ApiParam(value = "eg: 31", required = true)int shelterId) {
         return shelterEmployeeService.findShelterById(shelterId);
     }
 
@@ -106,9 +106,9 @@ public class ShelterEmployeeController {
         @ApiResponse(code = 401, message = "not authorized!"),
         @ApiResponse(code = 403, message = "forbidden!!!"),
         @ApiResponse(code = 404, message = "not found!!!") })
-    @RequestMapping(method = RequestMethod.POST, value = "/put/{animalId}")
-    public ResponseEntity<String> putAnimalIntoShelter(@PathVariable @ApiParam(value = "eg: 28")int animalId,
-                                                       @RequestBody @ApiParam(value = "eg: 31")int shelterId) {
+    @RequestMapping(method = RequestMethod.POST, value = "/put/{animalId}/{shelterId}")
+    public ResponseEntity<String> putAnimalIntoShelter(@PathVariable @ApiParam(value = "eg: 28", required = true)int animalId,
+                                                       @PathVariable @ApiParam(value = "eg: 31", required = true)int shelterId) {
         try {
             int result = shelterEmployeeService.putAnimalIntoShelter(animalId, shelterId);
             String msg = String.format("put animal " + animalId + " into shelter " + shelterId, result);
@@ -136,8 +136,8 @@ public class ShelterEmployeeController {
         @ApiResponse(code = 403, message = "forbidden!!!"),
         @ApiResponse(code = 404, message = "not found!!!") })
     @RequestMapping(method = RequestMethod.POST, value = "/updateCategory/{category}/{animalId}")
-    public int updateAnimalCategory(@PathVariable @ApiParam(value = "eg: Cat")String category,
-                                    @PathVariable @ApiParam(value = "eg: 28")int animalId) {
+    public int updateAnimalCategory(@PathVariable @ApiParam(value = "eg: Cat", required = true)String category,
+                                    @PathVariable @ApiParam(value = "eg: 28", required = true)int animalId) {
         return shelterEmployeeService.updateAnimalCategory(category, animalId);
     }
 
@@ -148,8 +148,8 @@ public class ShelterEmployeeController {
         @ApiResponse(code = 403, message = "forbidden!!!"),
         @ApiResponse(code = 404, message = "not found!!!") })
     @RequestMapping(method = RequestMethod.POST, value = "/updateBreed/{breed}/{animalId}")
-    public int updateAnimalBreed(@PathVariable @ApiParam(value = "eg: breed2")String breed,
-                                 @PathVariable @ApiParam(value = "eg: 28")int animalId) {
+    public int updateAnimalBreed(@PathVariable @ApiParam(value = "eg: breed2", required = true)String breed,
+                                 @PathVariable @ApiParam(value = "eg: 28", required = true)int animalId) {
         return shelterEmployeeService.updateAnimalBreed(breed, animalId);
     }
 
@@ -160,8 +160,8 @@ public class ShelterEmployeeController {
         @ApiResponse(code = 403, message = "forbidden!!!"),
         @ApiResponse(code = 404, message = "not found!!!") })
     @RequestMapping(method = RequestMethod.POST, value = "/updateWeight/{weight}/{animalId}")
-    public int updateAnimalWeight(@PathVariable @ApiParam(value = "eg: 20")int weight,
-                                  @PathVariable @ApiParam(value = "eg: 28")int animalId) {
+    public int updateAnimalWeight(@PathVariable @ApiParam(value = "eg: 20", required = true)int weight,
+                                  @PathVariable @ApiParam(value = "eg: 28", required = true)int animalId) {
         return shelterEmployeeService.updateAnimalWeight(weight, animalId);
     }
 
@@ -172,8 +172,8 @@ public class ShelterEmployeeController {
         @ApiResponse(code = 403, message = "forbidden!!!"),
         @ApiResponse(code = 404, message = "not found!!!") })
     @RequestMapping(method = RequestMethod.POST, value = "/updateGender/{gender}/{animalId}")
-    public int updateAnimalGender(@PathVariable @ApiParam(value = "eg: Male")String gender,
-                                  @PathVariable @ApiParam(value = "eg: 28")int animalId) {
+    public int updateAnimalGender(@PathVariable @ApiParam(value = "eg: Male", required = true)String gender,
+                                  @PathVariable @ApiParam(value = "eg: 28", required = true)int animalId) {
         return shelterEmployeeService.updateAnimalGender(gender, animalId);
     }
 
@@ -184,8 +184,8 @@ public class ShelterEmployeeController {
         @ApiResponse(code = 403, message = "forbidden!!!"),
         @ApiResponse(code = 404, message = "not found!!!") })
     @RequestMapping(method = RequestMethod.POST, value = "/updateColor/{color}/{animalId}")
-    public int updateAnimalColor(@PathVariable @ApiParam(value = "eg: white")String color,
-                                 @PathVariable @ApiParam(value = "eg: 28")int animalId) {
+    public int updateAnimalColor(@PathVariable @ApiParam(value = "eg: white", required = true)String color,
+                                 @PathVariable @ApiParam(value = "eg: 28", required = true)int animalId) {
         return shelterEmployeeService.updateAnimalColor(color, animalId);
     }
 
@@ -196,8 +196,8 @@ public class ShelterEmployeeController {
         @ApiResponse(code = 403, message = "forbidden!!!"),
         @ApiResponse(code = 404, message = "not found!!!") })
     @RequestMapping(method = RequestMethod.POST, value = "/updateShelterCapacity/{capacity}/{shelterId}")
-    public int updateShelterCapacity(@PathVariable @ApiParam(value = "eg: 50")int capacity,
-                                     @PathVariable @ApiParam(value = "eg: 31")int shelterId) {
+    public int updateShelterCapacity(@PathVariable @ApiParam(value = "eg: 50", required = true)int capacity,
+                                     @PathVariable @ApiParam(value = "eg: 31", required = true)int shelterId) {
         return shelterEmployeeService.updateShelterCapacity(capacity, shelterId);
     }
 
@@ -208,7 +208,7 @@ public class ShelterEmployeeController {
         @ApiResponse(code = 403, message = "forbidden!!!"),
         @ApiResponse(code = 404, message = "not found!!!") })
     @RequestMapping(method = RequestMethod.DELETE, value = "/removeAllAnimalInShelter/{shelterId}")
-    public List<AnimalRecord> removeAnimalsInShelter (@PathVariable @ApiParam(value = "eg: 31")int shelterId) {
+    public List<AnimalRecord> removeAnimalsInShelter (@PathVariable @ApiParam(value = "eg: 31", required = true)int shelterId) {
         return shelterEmployeeService.removeAllAnimalInShelter(shelterId);
     }
 
@@ -219,9 +219,9 @@ public class ShelterEmployeeController {
         @ApiResponse(code = 403, message = "forbidden!!!"),
         @ApiResponse(code = 404, message = "not found!!!") })
     @RequestMapping(method = RequestMethod.POST, value = "/updateShelterLocation/{longitude}/{latitude}/{shelterId}")
-    public int updateShelterLocation(@PathVariable @ApiParam(value = "eg: 40.3")double longitude,
-                                     @PathVariable @ApiParam(value = "eg: 50.3")double latitude,
-                                     @PathVariable @ApiParam(value = "eg: 31")int shelterId) {
+    public int updateShelterLocation(@PathVariable @ApiParam(value = "eg: 40.3", required = true)double longitude,
+                                     @PathVariable @ApiParam(value = "eg: 50.3", required = true)double latitude,
+                                     @PathVariable @ApiParam(value = "eg: 31", required = true)int shelterId) {
         return shelterEmployeeService.updateShelterLocation(longitude, latitude, shelterId);
     }
 
@@ -232,8 +232,8 @@ public class ShelterEmployeeController {
         @ApiResponse(code = 403, message = "forbidden!!!"),
         @ApiResponse(code = 404, message = "not found!!!") })
     @RequestMapping(method = RequestMethod.POST, value = "/moveAnimal/{animalId}/{shelterId}")
-    public int transferAnimalToOtherShelter(@PathVariable @ApiParam(value = "eg: 28")int animalId,
-                                            @PathVariable @ApiParam(value = "eg: 31")int shelterId) {
+    public int transferAnimalToOtherShelter(@PathVariable @ApiParam(value = "eg: 28", required = true)int animalId,
+                                            @PathVariable @ApiParam(value = "eg: 31", required = true)int shelterId) {
         return shelterEmployeeService.moveAnimalToShelter(animalId, shelterId);
     }
 
@@ -244,7 +244,7 @@ public class ShelterEmployeeController {
         @ApiResponse(code = 403, message = "forbidden!!!"),
         @ApiResponse(code = 404, message = "not found!!!") })
     @RequestMapping(method = RequestMethod.GET, value = "/trackAnimal/{animalId}")
-    public List<LocationHistory> trackAnimal(@PathVariable @ApiParam(value = "eg: 28")int animalId) {
+    public List<LocationHistory> trackAnimal(@PathVariable @ApiParam(value = "eg: 28", required = true)int animalId) {
         return shelterEmployeeService.trackAnimal(animalId);
     }
 }

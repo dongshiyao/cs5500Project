@@ -37,7 +37,7 @@ public class VolunteerController {
         @ApiResponse(code = 403, message = "forbidden!!!"),
         @ApiResponse(code = 404, message = "not found!!!") })
     @RequestMapping(method = RequestMethod.POST, value = "/createRecord")
-    public ResponseEntity<String> reportLostAnimal(@RequestBody @ApiParam(value = "The timeStamp has the format like: \"updateTime\": \"2017-11-14T09:50:18.772+0000\"")AnimalRecord animalRecord) {
+    public ResponseEntity<String> reportLostAnimal(@RequestBody @ApiParam(value = "The timeStamp has the format like: \"updateTime\": \"2017-11-14T09:50:18.772+0000\"", required = true)AnimalRecord animalRecord) {
         try {
             int result = volunteerService.createAnimalRecord(animalRecord);
             String msg = String.format("Create animal record with id: %d", result);
@@ -54,7 +54,7 @@ public class VolunteerController {
         @ApiResponse(code = 403, message = "forbidden!!!"),
         @ApiResponse(code = 404, message = "not found!!!") })
     @RequestMapping(method = RequestMethod.GET, value = "/findById/{animalId}")
-    public AnimalRecord findAnimalById(@PathVariable @ApiParam(value = "eg: 28")int animalId) {
+    public AnimalRecord findAnimalById(@PathVariable @ApiParam(value = "eg: 28", required = true)int animalId) {
         return volunteerService.findAnimalById(animalId);
     }
 
@@ -65,8 +65,8 @@ public class VolunteerController {
         @ApiResponse(code = 403, message = "forbidden!!!"),
         @ApiResponse(code = 404, message = "not found!!!") })
     @RequestMapping(method = RequestMethod.POST, value = "/updateLocation/{animalId}")
-    public ResponseEntity<String> updateLocation(@PathVariable @ApiParam(value = "eg: 28") int animalId,
-                                                 @RequestBody @ApiParam(value = "The timeStamp has the format like: \"updateTime\": \"2017-11-14T09:50:18.772+0000\"")CoordinateRecord coordinateRecord) {
+    public ResponseEntity<String> updateLocation(@PathVariable @ApiParam(value = "eg: 28", required = true) int animalId,
+                                                 @RequestBody @ApiParam(value = "The timeStamp has the format like: \"updateTime\": \"2017-11-14T09:50:18.772+0000\"", required = true)CoordinateRecord coordinateRecord) {
         try {
             int result = volunteerService.updateAnimalLocation(animalId, coordinateRecord);
             String msg = String.format("Update animal record with id: %d", result);
@@ -83,7 +83,7 @@ public class VolunteerController {
         @ApiResponse(code = 403, message = "forbidden!!!"),
         @ApiResponse(code = 404, message = "not found!!!") })
     @RequestMapping(method = RequestMethod.DELETE, value = "/deleteById/{animalId}")
-    public ResponseEntity<String> deleteAnimalById(@PathVariable @ApiParam(value = "eg: 28") int animalId) {
+    public ResponseEntity<String> deleteAnimalById(@PathVariable @ApiParam(value = "eg: 28", required = true) int animalId) {
         try {
             int result = volunteerService.deleteAnimalById(animalId);
             String msg = String.format("Deleted animal record with id: %d", result);
@@ -101,7 +101,7 @@ public class VolunteerController {
         @ApiResponse(code = 403, message = "forbidden!!!"),
         @ApiResponse(code = 404, message = "not found!!!") })
     @RequestMapping(method = RequestMethod.POST, value = "/updateStatus/{animalId}")
-    public ResponseEntity<String> updateStatus(@PathVariable @ApiParam(value = "eg: 28") int animalId, @RequestBody @ApiParam(value = "eg: In shelter1") String status) {
+    public ResponseEntity<String> updateStatus(@PathVariable @ApiParam(value = "eg: 28", required = true) int animalId, @RequestBody @ApiParam(value = "eg: In shelter1") String status) {
         return ResponseEntity.ok(volunteerService.updateAnimalStatus(animalId, status));
     }
 }
