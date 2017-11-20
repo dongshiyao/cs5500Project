@@ -101,7 +101,7 @@ public class VolunteerController {
         @ApiResponse(code = 403, message = "forbidden!!!"),
         @ApiResponse(code = 404, message = "not found!!!") })
     @RequestMapping(method = RequestMethod.POST, value = "/updateStatus/{animalId}")
-    public ResponseEntity<String> updateStatus(@PathVariable @ApiParam(value = "eg: 28", required = true) int animalId, @RequestBody @ApiParam(value = "eg: In shelter1") String status) {
+    public ResponseEntity<String> updateStatus(@PathVariable @ApiParam(value = "eg: 28", required = true) int animalId, @RequestBody @ApiParam(value = "eg: In shelter1", required = true) String status) {
         return ResponseEntity.ok(volunteerService.updateAnimalStatus(animalId, status));
     }
 }
