@@ -9,8 +9,12 @@ public class CoordinateRecord {
     private double longitude;
     private double latitude;
     private Timestamp updateTime;
-    
+
+    protected CoordinateRecord() {
+    }
+
     public CoordinateRecord(double longitude, double latitude, Timestamp updateTime) {
+        super();
         this.longitude = longitude;
         this.latitude = latitude;
         this.updateTime = updateTime;
