@@ -99,4 +99,70 @@ public class ShelterEmployeeServiceImpl implements ShelterEmployeeService {
         Shelter shelter = shelterRepository.findOne(shelterId);
         return shelter.getAvailability();
     }
+
+    @Override
+    public List<AnimalRecord> findAllAnimals() {
+        List<AnimalRecord> result = new ArrayList<>();
+        for (AnimalRecord animalRecord : animalRecordRepository.findAll()) {
+            result.add(animalRecord);
+        }
+        return result;
+    }
+
+    @Override
+    public int updateAnimalCategory(String category, int animalId) {
+        return animalRecordRepository.setFixedCategoryFor(category, animalId);
+    }
+
+    @Override
+    public int updateAnimalBreed(String breed, int animalId) {
+        return animalRecordRepository.setFixedBreedFor(breed, animalId);
+    }
+
+    @Override
+    public int updateAnimalWeight(int weight, int animalId) {
+        return animalRecordRepository.setFixedWeightFor(weight, animalId);
+    }
+
+    @Override
+    public int updateAnimalGender(String gender, int animalId) {
+        return animalRecordRepository.setFixedGenderFor(gender, animalId);
+    }
+
+    @Override
+    public int updateAnimalColor(String color, int animalId) {
+        return animalRecordRepository.setFixedColorFor(color, animalId);
+    }
+
+    @Override
+    public List<AnimalRecord> removeAllAnimalInShelter(int shelterId) {
+        return animalRecordRepository.removeByShelterId(shelterId);
+    }
+
+    @Override
+    public int updateShelterCapacity(int capacity, int shelterId) {
+        return shelterRepository.setFixedCapacityFor(capacity, shelterId);
+    }
+
+    @Override
+    public int updateShelterLocation(double longitude, double latitude, int shelterId) {
+        return shelterRepository.setFixedLocation(longitude, latitude, shelterId);
+    }
+
+    @Override
+    public int moveAnimalToShelter(int animalId, int shelterId) {
+        if (animalRecordRepository.exists(animalId)) {
+            AnimalRecord animalRecord = animalRecordRepository.findOne(animalId);
+            int oldShelterId = animalRecord.getShelterId();
+            Shelter oldShelter = shelterRepository.findOne(shelterId);
+            putAnimalIntoShelter(animalId, shelterId);
+            shelterRepository.setFixedAvailabilityFor(oldShelter.getAvailability() + 1, oldShelterId);
+        }
+        return animalId;
+    }
+
+    @Override
+    public List<LocationHistory> trackAnimal(int animalId) {
+        return locationHistoryRepository.findByAnimalIdOrderByUpdateTimeAsc(animalId);
+    }
 }

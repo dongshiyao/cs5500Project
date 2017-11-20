@@ -2,6 +2,8 @@ package css.neu.edu.cs5500.neufoodtruck.service;
 
 import org.springframework.dao.EmptyResultDataAccessException;
 
+import java.sql.Timestamp;
+
 import css.neu.edu.cs5500.neufoodtruck.model.AnimalRecord;
 import css.neu.edu.cs5500.neufoodtruck.model.CoordinateRecord;
 

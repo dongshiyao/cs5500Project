@@ -23,5 +23,5 @@ public interface PetOwnerService {
 
     List<AnimalRecord> findAnimalByCategoryAndBreedAndColorAfterLostTime(String category, String breed, String color, Timestamp lostTime);
 
-    List<AnimalRecord> findAnimalWithinCertainLocation(List<AnimalRecord> recordList, double distance, double longitude, double latitude);
+    List<AnimalRecord> findAnimalWithinCertainLocation(double distance, double latitude, double longitude, String unit);
 }

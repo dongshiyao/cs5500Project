@@ -1,6 +1,7 @@
 package css.neu.edu.cs5500.neufoodtruck.service;
 
 import css.neu.edu.cs5500.neufoodtruck.dao.AnimalRecordRepository;
+import css.neu.edu.cs5500.neufoodtruck.util.DistanceCalculator;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -22,82 +23,65 @@ public class PetOwnerServiceImpl implements PetOwnerService {
 
     @Override
     public List<AnimalRecord> findAnimalByCategory(String category) {
-      List<AnimalRecord> sameCategoryList = new ArrayList<>();
-      for (AnimalRecord animal : animalRecordRepository.findAll()) {
-        if (animal.getCategory().equals(category)) {
-          sameCategoryList.add(animal);
-        }
-      }
-      return sameCategoryList;
+      return animalRecordRepository.findByCategory(category);
     }
 
     @Override
     public List<AnimalRecord> findAnimalByCategoryAndBreed(String category, String breed) {
-      List<AnimalRecord> sameCategoryList = new ArrayList<>();
-      for (AnimalRecord animal : animalRecordRepository.findAll()) {
-        if (animal.getCategory() != null && animal.getCategory().equals(category)
-            && animal.getBreed() != null && animal.getBreed().equals(breed)) {
-          sameCategoryList.add(animal);
-        }
-      }
-      return sameCategoryList;
+      return animalRecordRepository.findByCategoryAndBreed(category, breed);
     }
 
     @Override
     public List<AnimalRecord> findAnimalByCategoryAndColor(String category, String color) {
-      List<AnimalRecord> sameCategoryList = new ArrayList<>();
-      for (AnimalRecord animal : animalRecordRepository.findAll()) {
-        if (animal.getCategory() != null && animal.getCategory().equals(category)
-            && animal.getColor() != null && animal.getColor().equals(color)) {
-          sameCategoryList.add(animal);
-        }
-      }
-      return sameCategoryList;
+      return animalRecordRepository.findByCategoryAndColor(category, color);
     }
 
     @Override
-    public List<AnimalRecord> findAnimalByCategoryAndBreedAndColor(String category, String breed, String color) {
-      List<AnimalRecord> sameCategoryList = new ArrayList<>();
-      for (AnimalRecord animal : animalRecordRepository.findAll()) {
-        if (animal.getCategory() != null && animal.getCategory().equals(category)
-            && animal.getBreed() != null && animal.getBreed().equals(breed)
-            && animal.getColor() != null && animal.getColor().equals(color)) {
-          sameCategoryList.add(animal);
-        }
-      }
-      return sameCategoryList;
+    public List<AnimalRecord> findAnimalByCategoryAndBreedAndColor(String category,
+                                                                   String breed,
+                                                                   String color) {
+      return animalRecordRepository.findByCategoryAndBreedAndColor(category, breed, color);
     }
 
-    //Didn't tested
     @Override
     public List<AnimalRecord> findAnimalByCategoryAfterLostTime(String category, Timestamp lostTime) {
-      List<AnimalRecord> sameCategoryList = new ArrayList<>();
-      for (AnimalRecord animal : animalRecordRepository.findAll()) {
-        if (animal.getCategory() != null && animal.getCategory().equals(category)
-            && animal.getFoundTime().before(lostTime)) {
-          sameCategoryList.add(animal);
+      return animalRecordRepository.findByCategoryAndFoundTimeAfter(category, lostTime);
+    }
+
+    @Override
+    public List<AnimalRecord> findAnimalByCategoryAndBreedAfterLostTime(String category,
+                                                                        String breed,
+                                                                        Timestamp lostTime) {
+        return animalRecordRepository.findByCategoryAndBreedAndFoundTimeAfter(category, breed, lostTime);
+    }
+
+    @Override
+    public List<AnimalRecord> findAnimalByCategoryAndColorAfterLostTime(String category,
+                                                                        String color,
+                                                                        Timestamp lostTime) {
+      return animalRecordRepository.findByCategoryAndColorAndFoundTimeAfter(category, color, lostTime);
+    }
+
+    @Override
+    public List<AnimalRecord> findAnimalByCategoryAndBreedAndColorAfterLostTime(String category,
+                                                                                String breed,
+                                                                                String color,
+                                                                                Timestamp lostTime) {
+        return animalRecordRepository.findByCategoryAndBreedAndColorAndFoundTimeAfter(category, breed, color, lostTime);
+    }
+
+    @Override
+    public List<AnimalRecord> findAnimalWithinCertainLocation(double distance,
+                                                              double latitude,
+                                                              double longitude,
+                                                              String unit) {
+        List<AnimalRecord> animalList = new ArrayList<>();
+        for (AnimalRecord animal : animalRecordRepository.findAll()) {
+            if (DistanceCalculator.distance(animal.getFoundLocationLat(), animal.getFoundLocationLong(),
+                latitude, longitude, unit) <= distance) {
+                animalList.add(animal);
+            }
         }
-      }
-      return sameCategoryList;
-    }
-
-    @Override
-    public List<AnimalRecord> findAnimalByCategoryAndBreedAfterLostTime(String category, String breed, Timestamp lostTime) {
-        return null;
-    }
-
-    @Override
-    public List<AnimalRecord> findAnimalByCategoryAndColorAfterLostTime(String category, String color, Timestamp lostTime) {
-        return null;
-    }
-
-    @Override
-    public List<AnimalRecord> findAnimalByCategoryAndBreedAndColorAfterLostTime(String category, String breed, String color, Timestamp lostTime) {
-        return null;
-    }
-
-    @Override
-    public List<AnimalRecord> findAnimalWithinCertainLocation(List<AnimalRecord> recordList, double distance, double longitude, double latitude) {
-        return null;
+        return animalList;
     }
 }

@@ -41,9 +41,28 @@ public class PetOwnerController {
         return petOwnerService.findAnimalByCategoryAndBreedAndColor(category, breed, color);
     }
 
-    //Didn't tested
-    @RequestMapping(method = RequestMethod.GET, value = "/findByCategoryAfterLostTime/{category}/{lostTime}")
-    public List<AnimalRecord> findAnimalByCategoryAfterLostTime(@PathVariable String category, @PathVariable Timestamp lostTime) {
+    @RequestMapping(method = RequestMethod.POST, value = "/findByCategoryAfterLostTime/{category}")
+    public List<AnimalRecord> findAnimalByCategoryAfterLostTime(@PathVariable String category, @RequestBody Timestamp lostTime) {
         return petOwnerService.findAnimalByCategoryAfterLostTime(category, lostTime);
+    }
+
+    @RequestMapping(method = RequestMethod.POST, value = "/findByCategoryAndBreedAfterLostTime/{category}/{breed}")
+    public List<AnimalRecord> findAnimalByCategoryAndBreedAfterLostTime(@PathVariable String category, @PathVariable String breed,@RequestBody Timestamp lostTime) {
+        return petOwnerService.findAnimalByCategoryAndBreedAfterLostTime(category, breed, lostTime);
+    }
+
+    @RequestMapping(method = RequestMethod.POST, value = "/findByCategoryAndColorAfterLostTime/{category}/{color}")
+    public List<AnimalRecord> findAnimalByCategoryAndColorAfterLostTime(@PathVariable String category, @PathVariable String color,@RequestBody Timestamp lostTime) {
+        return petOwnerService.findAnimalByCategoryAndColorAfterLostTime(category, color, lostTime);
+    }
+
+    @RequestMapping(method = RequestMethod.POST, value = "/findByCategoryAndBreedAndColorAndFoundTimeAfter/{category}/{breed}/{color}")
+    public List<AnimalRecord> findAnimalByCategoryAndBreedAndColorAfterLostTime(@PathVariable String category, @PathVariable String breed, @PathVariable String color,@RequestBody Timestamp lostTime) {
+        return petOwnerService.findAnimalByCategoryAndBreedAndColorAfterLostTime(category, breed, color, lostTime);
+    }
+
+    @RequestMapping(method = RequestMethod.GET, value = "/findByCertainLocation/{distance}/{latitude}/{longitude}/{unit}")
+    public List<AnimalRecord> findByCertainLocation(@PathVariable double distance, @PathVariable double latitude, @PathVariable double longitude, @PathVariable String unit) {
+        return petOwnerService.findAnimalWithinCertainLocation(distance, latitude, longitude, unit);
     }
 }

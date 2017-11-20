@@ -1,6 +1,7 @@
 package css.neu.edu.cs5500.neufoodtruck.controller;
 
 import css.neu.edu.cs5500.neufoodtruck.model.AnimalRecord;
+import css.neu.edu.cs5500.neufoodtruck.model.LocationHistory;
 import css.neu.edu.cs5500.neufoodtruck.model.Shelter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -67,5 +68,60 @@ public class ShelterEmployeeController {
         } catch (IllegalArgumentException e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
         }
+    }
+
+    @RequestMapping(method = RequestMethod.GET, value = "/findAllAnimal")
+    public List<AnimalRecord> findAllAnimals() {
+        return shelterEmployeeService.findAllAnimals();
+    }
+
+    @RequestMapping(method = RequestMethod.POST, value = "/updateCategory/{category}/{animalId}")
+    public int updateAnimalCategory(@PathVariable String category, @PathVariable int animalId) {
+        return shelterEmployeeService.updateAnimalCategory(category, animalId);
+    }
+
+    @RequestMapping(method = RequestMethod.POST, value = "/updateBreed/{breed}/{animalId}")
+    public int updateAnimalBreed(@PathVariable String breed, @PathVariable int animalId) {
+        return shelterEmployeeService.updateAnimalBreed(breed, animalId);
+    }
+
+    @RequestMapping(method = RequestMethod.POST, value = "/updateWeight/{weight}/{animalId}")
+    public int updateAnimalWeight(@PathVariable int weight, @PathVariable int animalId) {
+        return shelterEmployeeService.updateAnimalWeight(weight, animalId);
+    }
+
+    @RequestMapping(method = RequestMethod.POST, value = "/updateGender/{gender}/{animalId}")
+    public int updateAnimalGender(@PathVariable String gender, @PathVariable int animalId) {
+        return shelterEmployeeService.updateAnimalGender(gender, animalId);
+    }
+
+    @RequestMapping(method = RequestMethod.POST, value = "/updateColor/{color}/{animalId}")
+    public int updateAnimalColor(@PathVariable String color, @PathVariable int animalId) {
+        return shelterEmployeeService.updateAnimalColor(color, animalId);
+    }
+
+    @RequestMapping(method = RequestMethod.POST, value = "/updateShelterCapacity/{capacity}/{shelterId}")
+    public int updateShelterCapacity(@PathVariable int capacity, @PathVariable int shelterId) {
+        return shelterEmployeeService.updateShelterCapacity(capacity, shelterId);
+    }
+
+    @RequestMapping(method = RequestMethod.DELETE, value = "/removeAllAnimalInShelter/{shelterId}")
+    public List<AnimalRecord> removeAnimalsInShelter (@PathVariable int shelterId) {
+        return shelterEmployeeService.removeAllAnimalInShelter(shelterId);
+    }
+
+    @RequestMapping(method = RequestMethod.POST, value = "/updateShelterLocation/{longitude}/{latitude}/{shelterId}")
+    public int updateShelterLocation(@PathVariable double longitude, @PathVariable double latitude, @PathVariable int shelterId) {
+        return shelterEmployeeService.updateShelterLocation(longitude, latitude, shelterId);
+    }
+
+    @RequestMapping(method = RequestMethod.POST, value = "/moveAnimal/{animalId}/{shelterId}")
+    public int transferAnimalToOtherShelter(@PathVariable int animalId, @PathVariable int shelterId) {
+        return shelterEmployeeService.moveAnimalToShelter(animalId, shelterId);
+    }
+
+    @RequestMapping(method = RequestMethod.GET, value = "/trackAnimal/{animalId}")
+    public List<LocationHistory> trackAnimal(@PathVariable int animalId) {
+        return shelterEmployeeService.trackAnimal(animalId);
     }
 }
