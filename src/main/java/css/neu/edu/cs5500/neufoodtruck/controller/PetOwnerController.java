@@ -43,7 +43,7 @@ public class PetOwnerController {
         @ApiResponse(code = 403, message = "forbidden!!!"),
         @ApiResponse(code = 404, message = "not found!!!") })
     @RequestMapping(method = RequestMethod.GET, value = "/findByCategoryAndBreed/{category}/{breed}")
-    public List<AnimalRecord> findAnimalByCategoryAndBreed(@PathVariable @ApiParam(value = "eg: Cat", required = true) String category, @PathVariable @ApiParam(value = "breed1") String breed) {
+    public List<AnimalRecord> findAnimalByCategoryAndBreed(@PathVariable @ApiParam(value = "eg: Cat", required = true) String category, @PathVariable @ApiParam(value = "breed1", required = true) String breed) {
         return petOwnerService.findAnimalByCategoryAndBreed(category, breed);
     }
 
