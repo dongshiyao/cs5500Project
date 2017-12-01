@@ -26,7 +26,7 @@ public class PetOwnerController {
 
     @ApiOperation(value = "Find the animal records with the specific category information.")
     @ApiResponses(value = {
-        @ApiResponse(code = 200, message = "Success|OK"),
+        @ApiResponse(code = 201, message = "Success|OK"),
         @ApiResponse(code = 401, message = "not authorized!"),
         @ApiResponse(code = 403, message = "forbidden!!!"),
         @ApiResponse(code = 404, message = "not found!!!") })
@@ -37,7 +37,7 @@ public class PetOwnerController {
 
     @ApiOperation(value = "Find the animal records with the specific category and breed information.")
     @ApiResponses(value = {
-        @ApiResponse(code = 200, message = "Success|OK"),
+        @ApiResponse(code = 201, message = "Success|OK"),
         @ApiResponse(code = 401, message = "not authorized!"),
         @ApiResponse(code = 403, message = "forbidden!!!"),
         @ApiResponse(code = 404, message = "not found!!!") })
@@ -48,7 +48,7 @@ public class PetOwnerController {
 
     @ApiOperation(value = "Find the animal records with the specific category and color information.")
     @ApiResponses(value = {
-        @ApiResponse(code = 200, message = "Success|OK"),
+        @ApiResponse(code = 201, message = "Success|OK"),
         @ApiResponse(code = 401, message = "not authorized!"),
         @ApiResponse(code = 403, message = "forbidden!!!"),
         @ApiResponse(code = 404, message = "not found!!!") })
@@ -60,7 +60,7 @@ public class PetOwnerController {
 
     @ApiOperation(value = "Find the animal records with the specific category, breed and color information.")
     @ApiResponses(value = {
-        @ApiResponse(code = 200, message = "Success|OK"),
+        @ApiResponse(code = 201, message = "Success|OK"),
         @ApiResponse(code = 401, message = "not authorized!"),
         @ApiResponse(code = 403, message = "forbidden!!!"),
         @ApiResponse(code = 404, message = "not found!!!") })
@@ -73,7 +73,7 @@ public class PetOwnerController {
 
     @ApiOperation(value = "Find the specific category animal records which found after than lost time.")
     @ApiResponses(value = {
-        @ApiResponse(code = 200, message = "Success|OK"),
+        @ApiResponse(code = 201, message = "Success|OK"),
         @ApiResponse(code = 401, message = "not authorized!"),
         @ApiResponse(code = 403, message = "forbidden!!!"),
         @ApiResponse(code = 404, message = "not found!!!") })
@@ -85,7 +85,7 @@ public class PetOwnerController {
 
     @ApiOperation(value = "Find the specific category & breed animal records which found after than lost time.")
     @ApiResponses(value = {
-        @ApiResponse(code = 200, message = "Success|OK"),
+        @ApiResponse(code = 201, message = "Success|OK"),
         @ApiResponse(code = 401, message = "not authorized!"),
         @ApiResponse(code = 403, message = "forbidden!!!"),
         @ApiResponse(code = 404, message = "not found!!!") })
@@ -98,7 +98,7 @@ public class PetOwnerController {
 
     @ApiOperation(value = "Find the specific category & color animal records which found after than lost time.")
     @ApiResponses(value = {
-        @ApiResponse(code = 200, message = "Success|OK"),
+        @ApiResponse(code = 201, message = "Success|OK"),
         @ApiResponse(code = 401, message = "not authorized!"),
         @ApiResponse(code = 403, message = "forbidden!!!"),
         @ApiResponse(code = 404, message = "not found!!!") })
@@ -111,7 +111,7 @@ public class PetOwnerController {
 
     @ApiOperation(value = "Find the specific category & breed & color animal records which found after than lost time.")
     @ApiResponses(value = {
-        @ApiResponse(code = 200, message = "Success|OK"),
+        @ApiResponse(code = 201, message = "Success|OK"),
         @ApiResponse(code = 401, message = "not authorized!"),
         @ApiResponse(code = 403, message = "forbidden!!!"),
         @ApiResponse(code = 404, message = "not found!!!") })
@@ -125,7 +125,7 @@ public class PetOwnerController {
 
     @ApiOperation(value = "Find the animal records which are near by the certain location.")
     @ApiResponses(value = {
-        @ApiResponse(code = 200, message = "Success|OK"),
+        @ApiResponse(code = 201, message = "Success|OK"),
         @ApiResponse(code = 401, message = "not authorized!"),
         @ApiResponse(code = 403, message = "forbidden!!!"),
         @ApiResponse(code = 404, message = "not found!!!") })

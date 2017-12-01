@@ -32,7 +32,7 @@ public class VolunteerController {
 
     @ApiOperation(value = "Create the animal record to database when the volunteer fina a poor animal.")
     @ApiResponses(value = {
-        @ApiResponse(code = 200, message = "Success|OK"),
+        @ApiResponse(code = 201, message = "Success|OK"),
         @ApiResponse(code = 401, message = "not authorized!"),
         @ApiResponse(code = 403, message = "forbidden!!!"),
         @ApiResponse(code = 404, message = "not found!!!") })
@@ -49,7 +49,7 @@ public class VolunteerController {
 
     @ApiOperation(value = "Find the animal record from database with specific animal ID.")
     @ApiResponses(value = {
-        @ApiResponse(code = 200, message = "Success|OK"),
+        @ApiResponse(code = 201, message = "Success|OK"),
         @ApiResponse(code = 401, message = "not authorized!"),
         @ApiResponse(code = 403, message = "forbidden!!!"),
         @ApiResponse(code = 404, message = "not found!!!") })
@@ -60,7 +60,7 @@ public class VolunteerController {
 
     @ApiOperation(value = "Update the animal location with specific animal ID.")
     @ApiResponses(value = {
-        @ApiResponse(code = 200, message = "Success|OK"),
+        @ApiResponse(code = 201, message = "Success|OK"),
         @ApiResponse(code = 401, message = "not authorized!"),
         @ApiResponse(code = 403, message = "forbidden!!!"),
         @ApiResponse(code = 404, message = "not found!!!") })
@@ -78,7 +78,7 @@ public class VolunteerController {
 
     @ApiOperation(value = "Delete the animal record from database with specific animal ID.")
     @ApiResponses(value = {
-        @ApiResponse(code = 200, message = "Success|OK"),
+        @ApiResponse(code = 201, message = "Success|OK"),
         @ApiResponse(code = 401, message = "not authorized!"),
         @ApiResponse(code = 403, message = "forbidden!!!"),
         @ApiResponse(code = 404, message = "not found!!!") })
@@ -96,7 +96,7 @@ public class VolunteerController {
 
     @ApiOperation(value = "Update the animal statue with specific animal ID.")
     @ApiResponses(value = {
-        @ApiResponse(code = 200, message = "Success|OK"),
+        @ApiResponse(code = 201, message = "Success|OK"),
         @ApiResponse(code = 401, message = "not authorized!"),
         @ApiResponse(code = 403, message = "forbidden!!!"),
         @ApiResponse(code = 404, message = "not found!!!") })
