@@ -2,6 +2,7 @@ package css.neu.edu.cs5500.neufoodtruck.service;
 
 import css.neu.edu.cs5500.neufoodtruck.dao.AnimalRecordRepository;
 import css.neu.edu.cs5500.neufoodtruck.util.DistanceCalculator;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -17,6 +18,7 @@ public class PetOwnerServiceImpl implements PetOwnerService {
 
     private final AnimalRecordRepository animalRecordRepository;
 
+    @Autowired
     public PetOwnerServiceImpl(AnimalRecordRepository animalRecordRepository) {
         this.animalRecordRepository = animalRecordRepository;
     }

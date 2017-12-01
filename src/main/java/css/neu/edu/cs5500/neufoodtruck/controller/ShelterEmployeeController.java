@@ -28,7 +28,7 @@ public class ShelterEmployeeController {
 
     @ApiOperation(value = "Create a new shelter.")
     @ApiResponses(value = {
-        @ApiResponse(code = 201, message = "Success|OK"),
+        @ApiResponse(code = 200, message = "Success|OK"),
         @ApiResponse(code = 401, message = "not authorized!"),
         @ApiResponse(code = 403, message = "forbidden!!!"),
         @ApiResponse(code = 404, message = "not found!!!") })
@@ -43,11 +43,9 @@ public class ShelterEmployeeController {
         }
     }
 
-
-
     @ApiOperation(value = "Show all shelters.")
     @ApiResponses(value = {
-        @ApiResponse(code = 201, message = "Success|OK"),
+        @ApiResponse(code = 200, message = "Success|OK"),
         @ApiResponse(code = 401, message = "not authorized!"),
         @ApiResponse(code = 403, message = "forbidden!!!"),
         @ApiResponse(code = 404, message = "not found!!!") })
@@ -58,7 +56,7 @@ public class ShelterEmployeeController {
 
     @ApiOperation(value = "Check the specific shelter's capacity.")
     @ApiResponses(value = {
-        @ApiResponse(code = 201, message = "Success|OK"),
+        @ApiResponse(code = 200, message = "Success|OK"),
         @ApiResponse(code = 401, message = "not authorized!"),
         @ApiResponse(code = 403, message = "forbidden!!!"),
         @ApiResponse(code = 404, message = "not found!!!") })
@@ -69,7 +67,7 @@ public class ShelterEmployeeController {
 
     @ApiOperation(value = "Check the specific shelter's availability.")
     @ApiResponses(value = {
-        @ApiResponse(code = 201, message = "Success|OK"),
+        @ApiResponse(code = 200, message = "Success|OK"),
         @ApiResponse(code = 401, message = "not authorized!"),
         @ApiResponse(code = 403, message = "forbidden!!!"),
         @ApiResponse(code = 404, message = "not found!!!") })
@@ -80,7 +78,7 @@ public class ShelterEmployeeController {
 
     @ApiOperation(value = "Show all animals in specific shelter(search with shelterId).")
     @ApiResponses(value = {
-        @ApiResponse(code = 201, message = "Success|OK"),
+        @ApiResponse(code = 200, message = "Success|OK"),
         @ApiResponse(code = 401, message = "not authorized!"),
         @ApiResponse(code = 403, message = "forbidden!!!"),
         @ApiResponse(code = 404, message = "not found!!!") })
@@ -91,7 +89,7 @@ public class ShelterEmployeeController {
 
     @ApiOperation(value = "Find the shelter with shelter Id.")
     @ApiResponses(value = {
-        @ApiResponse(code = 201, message = "Success|OK"),
+        @ApiResponse(code = 200, message = "Success|OK"),
         @ApiResponse(code = 401, message = "not authorized!"),
         @ApiResponse(code = 403, message = "forbidden!!!"),
         @ApiResponse(code = 404, message = "not found!!!") })
@@ -102,7 +100,7 @@ public class ShelterEmployeeController {
 
     @ApiOperation(value = "Add an animal into the shelter.")
     @ApiResponses(value = {
-        @ApiResponse(code = 201, message = "Success|OK"),
+        @ApiResponse(code = 200, message = "Success|OK"),
         @ApiResponse(code = 401, message = "not authorized!"),
         @ApiResponse(code = 403, message = "forbidden!!!"),
         @ApiResponse(code = 404, message = "not found!!!") })
@@ -120,7 +118,7 @@ public class ShelterEmployeeController {
 
     @ApiOperation(value = "Show all animals.")
     @ApiResponses(value = {
-        @ApiResponse(code = 201, message = "Success|OK"),
+        @ApiResponse(code = 200, message = "Success|OK"),
         @ApiResponse(code = 401, message = "not authorized!"),
         @ApiResponse(code = 403, message = "forbidden!!!"),
         @ApiResponse(code = 404, message = "not found!!!") })
@@ -131,7 +129,7 @@ public class ShelterEmployeeController {
 
     @ApiOperation(value = "Update the category for specific animal.")
     @ApiResponses(value = {
-        @ApiResponse(code = 201, message = "Success|OK"),
+        @ApiResponse(code = 200, message = "Success|OK"),
         @ApiResponse(code = 401, message = "not authorized!"),
         @ApiResponse(code = 403, message = "forbidden!!!"),
         @ApiResponse(code = 404, message = "not found!!!") })
@@ -143,7 +141,7 @@ public class ShelterEmployeeController {
 
     @ApiOperation(value = "Update the breed for specific animal.")
     @ApiResponses(value = {
-        @ApiResponse(code = 201, message = "Success|OK"),
+        @ApiResponse(code = 200, message = "Success|OK"),
         @ApiResponse(code = 401, message = "not authorized!"),
         @ApiResponse(code = 403, message = "forbidden!!!"),
         @ApiResponse(code = 404, message = "not found!!!") })
@@ -155,7 +153,7 @@ public class ShelterEmployeeController {
 
     @ApiOperation(value = "Update the weight for specific animal.")
     @ApiResponses(value = {
-        @ApiResponse(code = 201, message = "Success|OK"),
+        @ApiResponse(code = 200, message = "Success|OK"),
         @ApiResponse(code = 401, message = "not authorized!"),
         @ApiResponse(code = 403, message = "forbidden!!!"),
         @ApiResponse(code = 404, message = "not found!!!") })
@@ -167,7 +165,7 @@ public class ShelterEmployeeController {
 
     @ApiOperation(value = "Update the gender for specific animal.")
     @ApiResponses(value = {
-        @ApiResponse(code = 201, message = "Success|OK"),
+        @ApiResponse(code = 200, message = "Success|OK"),
         @ApiResponse(code = 401, message = "not authorized!"),
         @ApiResponse(code = 403, message = "forbidden!!!"),
         @ApiResponse(code = 404, message = "not found!!!") })
@@ -179,7 +177,7 @@ public class ShelterEmployeeController {
 
     @ApiOperation(value = "Update the color for specific animal.")
     @ApiResponses(value = {
-        @ApiResponse(code = 201, message = "Success|OK"),
+        @ApiResponse(code = 200, message = "Success|OK"),
         @ApiResponse(code = 401, message = "not authorized!"),
         @ApiResponse(code = 403, message = "forbidden!!!"),
         @ApiResponse(code = 404, message = "not found!!!") })
@@ -191,7 +189,7 @@ public class ShelterEmployeeController {
 
     @ApiOperation(value = "Update the capacity for specific shelter.")
     @ApiResponses(value = {
-        @ApiResponse(code = 201, message = "Success|OK"),
+        @ApiResponse(code = 200, message = "Success|OK"),
         @ApiResponse(code = 401, message = "not authorized!"),
         @ApiResponse(code = 403, message = "forbidden!!!"),
         @ApiResponse(code = 404, message = "not found!!!") })
@@ -203,7 +201,7 @@ public class ShelterEmployeeController {
 
     @ApiOperation(value = "Remove all animals in specific shelter.")
     @ApiResponses(value = {
-        @ApiResponse(code = 201, message = "Success|OK"),
+        @ApiResponse(code = 200, message = "Success|OK"),
         @ApiResponse(code = 401, message = "not authorized!"),
         @ApiResponse(code = 403, message = "forbidden!!!"),
         @ApiResponse(code = 404, message = "not found!!!") })
@@ -214,7 +212,7 @@ public class ShelterEmployeeController {
 
     @ApiOperation(value = "Update the location for specific shelter.")
     @ApiResponses(value = {
-        @ApiResponse(code = 201, message = "Success|OK"),
+        @ApiResponse(code = 200, message = "Success|OK"),
         @ApiResponse(code = 401, message = "not authorized!"),
         @ApiResponse(code = 403, message = "forbidden!!!"),
         @ApiResponse(code = 404, message = "not found!!!") })
@@ -227,7 +225,7 @@ public class ShelterEmployeeController {
 
     @ApiOperation(value = "Update the shelter for specific animal.")
     @ApiResponses(value = {
-        @ApiResponse(code = 201, message = "Success|OK"),
+        @ApiResponse(code = 200, message = "Success|OK"),
         @ApiResponse(code = 401, message = "not authorized!"),
         @ApiResponse(code = 403, message = "forbidden!!!"),
         @ApiResponse(code = 404, message = "not found!!!") })
@@ -239,7 +237,7 @@ public class ShelterEmployeeController {
 
     @ApiOperation(value = "Track the specific animal(show location history).")
     @ApiResponses(value = {
-        @ApiResponse(code = 201, message = "Success|OK"),
+        @ApiResponse(code = 200, message = "Success|OK"),
         @ApiResponse(code = 401, message = "not authorized!"),
         @ApiResponse(code = 403, message = "forbidden!!!"),
         @ApiResponse(code = 404, message = "not found!!!") })

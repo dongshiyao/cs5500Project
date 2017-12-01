@@ -9,6 +9,7 @@ import css.neu.edu.cs5500.neufoodtruck.model.Shelter;
 public class DataValid {
 
     public static void validateAnimalRecord(AnimalRecord animalRecord) {
+        Assert.notNull(animalRecord, "Animal record not found");
         Assert.notNull(animalRecord.getCategory(), "Category must not be null");
         Assert.notNull(animalRecord.getFoundTime(), "Found time must not be null");
         Assert.notNull(animalRecord.getUpdateTime(), "Update time must not be null");
@@ -19,12 +20,14 @@ public class DataValid {
     }
 
     public static void validateCoordinateRecord(CoordinateRecord coordinateRecord) {
+        Assert.notNull(coordinateRecord, "Coordinate record not found");
         Assert.notNull(coordinateRecord.getUpdateTime(), "Update time must not be null");
         Assert.isTrue(coordinateRecord.getLongitude() != 0, "Longitude must not be 0");
         Assert.isTrue(coordinateRecord.getLatitude() != 0, "Latitude must not be 0");
     }
 
     public static void validateShelter(Shelter shelter) {
+        Assert.notNull(shelter, "Shelter not found");
         Assert.notNull(shelter.getName(), "Shelter name must not be null");
         Assert.isTrue(shelter.getCapacity() > 0, "Capacity must be larger than 0");
         Assert.isTrue(shelter.getAvailability() <= shelter.getCapacity(), "Availability must not be larger than capacity");

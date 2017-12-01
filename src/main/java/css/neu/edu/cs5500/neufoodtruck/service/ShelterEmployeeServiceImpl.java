@@ -6,6 +6,7 @@ import css.neu.edu.cs5500.neufoodtruck.dao.ShelterRepository;
 import css.neu.edu.cs5500.neufoodtruck.model.CoordinateRecord;
 import css.neu.edu.cs5500.neufoodtruck.model.LocationHistory;
 import css.neu.edu.cs5500.neufoodtruck.util.DataValid;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -25,6 +26,7 @@ public class ShelterEmployeeServiceImpl implements ShelterEmployeeService {
     private final LocationHistoryRepository locationHistoryRepository;
     private final ShelterRepository shelterRepository;
 
+    @Autowired
     public ShelterEmployeeServiceImpl(AnimalRecordRepository animalRecordRepository,
                                       LocationHistoryRepository locationHistoryRepository,
                                       ShelterRepository shelterRepository) {
@@ -78,6 +80,8 @@ public class ShelterEmployeeServiceImpl implements ShelterEmployeeService {
 
     @Override
     public List<AnimalRecord> findAnimalByShelterId(int shelterId) {
+        Shelter shelter = findShelterById(shelterId);
+        DataValid.validateShelter(shelter);
         List<AnimalRecord> result = new ArrayList<>();
         ArrayList<AnimalRecord> animalRecords = (ArrayList<AnimalRecord>) animalRecordRepository.findAll();
         for (AnimalRecord animalRecord : animalRecords) {
@@ -90,13 +94,15 @@ public class ShelterEmployeeServiceImpl implements ShelterEmployeeService {
 
     @Override
     public int checkShelterCapacityById(int shelterId) {
-        Shelter shelter = shelterRepository.findOne(shelterId);
+        Shelter shelter = findShelterById(shelterId);
+        DataValid.validateShelter(shelter);
         return shelter.getCapacity();
     }
 
     @Override
     public int checkShelterAvailabilityById(int shelterId) {
-        Shelter shelter = shelterRepository.findOne(shelterId);
+        Shelter shelter = findShelterById(shelterId);
+        DataValid.validateShelter(shelter);
         return shelter.getAvailability();
     }
 
@@ -111,58 +117,78 @@ public class ShelterEmployeeServiceImpl implements ShelterEmployeeService {
 
     @Override
     public int updateAnimalCategory(String category, int animalId) {
+        AnimalRecord animalRecord = animalRecordRepository.findOne(animalId);
+        DataValid.validateAnimalRecord(animalRecord);
         return animalRecordRepository.setFixedCategoryFor(category, animalId);
     }
 
     @Override
     public int updateAnimalBreed(String breed, int animalId) {
+        AnimalRecord animalRecord = animalRecordRepository.findOne(animalId);
+        DataValid.validateAnimalRecord(animalRecord);
         return animalRecordRepository.setFixedBreedFor(breed, animalId);
     }
 
     @Override
     public int updateAnimalWeight(int weight, int animalId) {
+        AnimalRecord animalRecord = animalRecordRepository.findOne(animalId);
+        DataValid.validateAnimalRecord(animalRecord);
         return animalRecordRepository.setFixedWeightFor(weight, animalId);
     }
 
     @Override
     public int updateAnimalGender(String gender, int animalId) {
+        AnimalRecord animalRecord = animalRecordRepository.findOne(animalId);
+        DataValid.validateAnimalRecord(animalRecord);
         return animalRecordRepository.setFixedGenderFor(gender, animalId);
     }
 
     @Override
     public int updateAnimalColor(String color, int animalId) {
+        AnimalRecord animalRecord = animalRecordRepository.findOne(animalId);
+        DataValid.validateAnimalRecord(animalRecord);
         return animalRecordRepository.setFixedColorFor(color, animalId);
     }
 
     @Override
     public List<AnimalRecord> removeAllAnimalInShelter(int shelterId) {
+        Shelter shelter = findShelterById(shelterId);
+        DataValid.validateShelter(shelter);
         return animalRecordRepository.removeByShelterId(shelterId);
     }
 
     @Override
     public int updateShelterCapacity(int capacity, int shelterId) {
+        Shelter shelter = findShelterById(shelterId);
+        DataValid.validateShelter(shelter);
         return shelterRepository.setFixedCapacityFor(capacity, shelterId);
     }
 
     @Override
     public int updateShelterLocation(double longitude, double latitude, int shelterId) {
+        Shelter shelter = findShelterById(shelterId);
+        DataValid.validateShelter(shelter);
         return shelterRepository.setFixedLocation(longitude, latitude, shelterId);
     }
 
     @Override
     public int moveAnimalToShelter(int animalId, int shelterId) {
-        if (animalRecordRepository.exists(animalId)) {
-            AnimalRecord animalRecord = animalRecordRepository.findOne(animalId);
-            int oldShelterId = animalRecord.getShelterId();
-            Shelter oldShelter = shelterRepository.findOne(shelterId);
-            putAnimalIntoShelter(animalId, shelterId);
-            shelterRepository.setFixedAvailabilityFor(oldShelter.getAvailability() + 1, oldShelterId);
-        }
+        Shelter shelter = findShelterById(shelterId);
+        AnimalRecord animalRecord = animalRecordRepository.findOne(animalId);
+        DataValid.validateAnimalRecord(animalRecord);
+        DataValid.validateShelter(shelter);
+
+        int oldShelterId = animalRecord.getShelterId();
+        Shelter oldShelter = shelterRepository.findOne(shelterId);
+        putAnimalIntoShelter(animalId, shelterId);
+        shelterRepository.setFixedAvailabilityFor(oldShelter.getAvailability() + 1, oldShelterId);
         return animalId;
     }
 
     @Override
     public List<LocationHistory> trackAnimal(int animalId) {
+        AnimalRecord animalRecord = animalRecordRepository.findOne(animalId);
+        DataValid.validateAnimalRecord(animalRecord);
         return locationHistoryRepository.findByAnimalIdOrderByUpdateTimeAsc(animalId);
     }
 }

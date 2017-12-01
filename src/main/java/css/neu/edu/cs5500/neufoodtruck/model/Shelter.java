@@ -30,6 +30,20 @@ public class Shelter {
     @Column(nullable = false)
     private double locationLat;
 
+    public Shelter() {
+    }
+
+    public Shelter(String name) {
+    }
+
+    public Shelter(String name, int capacity, int availability, double locationLong, double locationLat) {
+        this.name = name;
+        this.capacity = capacity;
+        this.availability = availability;
+        this.locationLong = locationLong;
+        this.locationLat = locationLat;
+    }
+
     public int getShelterId() {
         return shelterId;
     }

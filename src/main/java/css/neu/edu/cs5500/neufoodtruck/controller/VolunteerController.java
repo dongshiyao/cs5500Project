@@ -24,7 +24,7 @@ public class VolunteerController {
     @Autowired
     private VolunteerService volunteerService;
 
-    @ApiOperation(value = "Test for VolunteerContorller.", response = Iterable.class, tags = "HelloWorld")
+    @ApiOperation(value = "Test for Volunteer Controller.", response = Iterable.class, tags = "HelloWorld")
     @RequestMapping(method = RequestMethod.GET, value = "/hello")
     public String sayHello() {
         return "Yes, hello from volunteer";
@@ -32,15 +32,15 @@ public class VolunteerController {
 
     @ApiOperation(value = "Create the animal record to database when the volunteer fina a poor animal.")
     @ApiResponses(value = {
-        @ApiResponse(code = 201, message = "Success|OK"),
+        @ApiResponse(code = 200, message = "Success|OK"),
         @ApiResponse(code = 401, message = "not authorized!"),
         @ApiResponse(code = 403, message = "forbidden!!!"),
         @ApiResponse(code = 404, message = "not found!!!") })
     @RequestMapping(method = RequestMethod.POST, value = "/createRecord")
-    public ResponseEntity<String> reportLostAnimal(@RequestBody @ApiParam(value = "The timeStamp has the format like: \"updateTime\": \"2017-11-14T09:50:18.772+0000\"", required = true)AnimalRecord animalRecord) {
+    public ResponseEntity<String> reportLostAnimal(@RequestBody @ApiParam(value = "animal record", required = true)AnimalRecord animalRecord) {
         try {
             int result = volunteerService.createAnimalRecord(animalRecord);
-            String msg = String.format("Create animal record with id: %d", result);
+            String msg = String.format("New animal record is created, id: %d", result);
             return ResponseEntity.ok(msg);
         } catch (IllegalArgumentException e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
@@ -49,7 +49,7 @@ public class VolunteerController {
 
     @ApiOperation(value = "Find the animal record from database with specific animal ID.")
     @ApiResponses(value = {
-        @ApiResponse(code = 201, message = "Success|OK"),
+        @ApiResponse(code = 200, message = "Success|OK"),
         @ApiResponse(code = 401, message = "not authorized!"),
         @ApiResponse(code = 403, message = "forbidden!!!"),
         @ApiResponse(code = 404, message = "not found!!!") })
@@ -60,13 +60,13 @@ public class VolunteerController {
 
     @ApiOperation(value = "Update the animal location with specific animal ID.")
     @ApiResponses(value = {
-        @ApiResponse(code = 201, message = "Success|OK"),
+        @ApiResponse(code = 200, message = "Success|OK"),
         @ApiResponse(code = 401, message = "not authorized!"),
         @ApiResponse(code = 403, message = "forbidden!!!"),
         @ApiResponse(code = 404, message = "not found!!!") })
     @RequestMapping(method = RequestMethod.POST, value = "/updateLocation/{animalId}")
     public ResponseEntity<String> updateLocation(@PathVariable @ApiParam(value = "eg: 28", required = true) int animalId,
-                                                 @RequestBody @ApiParam(value = "The timeStamp has the format like: \"updateTime\": \"2017-11-14T09:50:18.772+0000\"", required = true)CoordinateRecord coordinateRecord) {
+                                                 @RequestBody @ApiParam(value = "Coordinate record", required = true)CoordinateRecord coordinateRecord) {
         try {
             int result = volunteerService.updateAnimalLocation(animalId, coordinateRecord);
             String msg = String.format("Update animal record with id: %d", result);
@@ -78,7 +78,7 @@ public class VolunteerController {
 
     @ApiOperation(value = "Delete the animal record from database with specific animal ID.")
     @ApiResponses(value = {
-        @ApiResponse(code = 201, message = "Success|OK"),
+        @ApiResponse(code = 200, message = "Success|OK"),
         @ApiResponse(code = 401, message = "not authorized!"),
         @ApiResponse(code = 403, message = "forbidden!!!"),
         @ApiResponse(code = 404, message = "not found!!!") })
@@ -96,12 +96,12 @@ public class VolunteerController {
 
     @ApiOperation(value = "Update the animal statue with specific animal ID.")
     @ApiResponses(value = {
-        @ApiResponse(code = 201, message = "Success|OK"),
+        @ApiResponse(code = 200, message = "Success|OK"),
         @ApiResponse(code = 401, message = "not authorized!"),
         @ApiResponse(code = 403, message = "forbidden!!!"),
         @ApiResponse(code = 404, message = "not found!!!") })
     @RequestMapping(method = RequestMethod.POST, value = "/updateStatus/{animalId}")
-    public ResponseEntity<String> updateStatus(@PathVariable @ApiParam(value = "eg: 28", required = true) int animalId, @RequestBody @ApiParam(value = "eg: In shelter1", required = true) String status) {
+    public ResponseEntity<String> updateStatus(@PathVariable @ApiParam(value = "eg: 28", required = true) int animalId, @RequestBody @ApiParam(value = "eg: In shelter", required = true) String status) {
         return ResponseEntity.ok(volunteerService.updateAnimalStatus(animalId, status));
     }
 }
