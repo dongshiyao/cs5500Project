@@ -32,8 +32,8 @@ class VolunteerServiceImpl implements VolunteerService {
     @Override
     public int createAnimalRecord(AnimalRecord animalRecord) throws IllegalArgumentException {
         DataValid.validateAnimalRecord(animalRecord);
-        animalRecordRepository.save(animalRecord);
-        int id = animalRecord.getAnimalId();
+        AnimalRecord returnValue = animalRecordRepository.save(animalRecord);
+        int id = returnValue.getAnimalId();
         String animalTime = String.valueOf(id) + "_" + animalRecord.getFoundTime().toString();
         LocationHistory locationHistory = new LocationHistory(animalTime, id,
             animalRecord.getFoundTime(), animalRecord.getFoundLocationLong(),
