@@ -64,7 +64,7 @@ public class VolunteerController {
         @ApiResponse(code = 401, message = "not authorized!"),
         @ApiResponse(code = 403, message = "forbidden!!!"),
         @ApiResponse(code = 404, message = "not found!!!") })
-    @RequestMapping(method = RequestMethod.POST, value = "/updateLocation/{animalId}")
+    @RequestMapping(method = RequestMethod.PUT, value = "/updateLocation/{animalId}")
     public ResponseEntity<String> updateLocation(@PathVariable @ApiParam(value = "eg: 28", required = true) int animalId,
                                                  @RequestBody @ApiParam(value = "Coordinate record", required = true)CoordinateRecord coordinateRecord) {
         try {
@@ -100,7 +100,7 @@ public class VolunteerController {
         @ApiResponse(code = 401, message = "not authorized!"),
         @ApiResponse(code = 403, message = "forbidden!!!"),
         @ApiResponse(code = 404, message = "not found!!!") })
-    @RequestMapping(method = RequestMethod.POST, value = "/updateStatus/{animalId}")
+    @RequestMapping(method = RequestMethod.PUT, value = "/updateStatus/{animalId}")
     public ResponseEntity<String> updateStatus(@PathVariable @ApiParam(value = "eg: 28", required = true) int animalId, @RequestBody @ApiParam(value = "eg: In shelter", required = true) String status) {
         return ResponseEntity.ok(volunteerService.updateAnimalStatus(animalId, status));
     }
