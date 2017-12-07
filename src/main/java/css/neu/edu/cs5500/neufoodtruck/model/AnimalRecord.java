@@ -58,7 +58,12 @@ public class AnimalRecord {
     @Column
     private int shelterId;
 
+    public AnimalRecord() {
+
+    }
+
     public AnimalRecord(String category, String breed, int weight, String gender, String color, String status, Timestamp foundTime, Timestamp updateTime, double foundLocationLong, double foundLocationLat, double currentLocationLong, double currentLocationLat, int shelterId) {
+        super();
         this.category = category;
         this.breed = breed;
         this.weight = weight;
